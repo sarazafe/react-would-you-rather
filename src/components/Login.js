@@ -1,0 +1,14 @@
+import React, { Component } from 'react';
+
+/**
+ * Component for login page
+ */
+export default class Login extends Component {
+	render() {
+		return (
+			<div>
+				Login page
+			</div>
+		);
+	}
+}
