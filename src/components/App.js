@@ -34,10 +34,10 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps({users}) {
+const mapStateToProps = ({users}) => {
 	return {
 		loading: users === null || users === undefined
 	};
-}
+};
 
 export default connect(mapStateToProps)(App);
