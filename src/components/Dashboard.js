@@ -9,7 +9,7 @@ class Dashboard extends Component {
 	render() {
 		const {loggedUser} = this.props;
 		if (!loggedUser) {
-			return <Redirect to='login'/>;
+			return <Redirect push to='login'/>;
 		}
 
 		return (
@@ -26,4 +26,4 @@ const mapStateToProps = ({loggedUser}) => {
 	};
 };
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Dashboard);
