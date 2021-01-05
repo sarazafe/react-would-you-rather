@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from 'react-redux-loading';
 import {getUsers} from '../actions/users'
 import {getInitialData} from './api';
 
@@ -7,9 +8,11 @@ import {getInitialData} from './api';
  */
 export const handleInitialData = () => {
 	return (dispatch) => {
+		dispatch(showLoading());
 		return getInitialData()
 			.then(({users}) => {
 				dispatch(getUsers(users));
+				dispatch(hideLoading());
 			});
 	};
 };
