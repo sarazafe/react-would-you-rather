@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 /**
  * Component for home page
  */
-export default class Dashboard extends Component {
+class Dashboard extends Component {
 	render() {
+		const {loggedUser} = this.props;
+		if (!loggedUser) {
+			return <Redirect to='login'/>;
+		}
+
 		return (
 			<div>
 				Dashboard page
@@ -12,3 +19,11 @@ export default class Dashboard extends Component {
 		);
 	}
 }
+
+const mapStateToProps = ({loggedUser}) => {
+	return {
+		loggedUser,
+	};
+};
+
+export default connect(mapStateToProps)(Dashboard)
