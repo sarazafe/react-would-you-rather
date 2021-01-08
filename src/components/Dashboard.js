@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import Header from "./Header";
 
 /**
  * Component for home page
@@ -14,6 +15,7 @@ class Dashboard extends Component {
 
 		return (
 			<div>
+				<Header/>
 				Dashboard page
 			</div>
 		);
