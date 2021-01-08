@@ -42,7 +42,7 @@ class Login extends Component {
 			const {id, name, avatarURL} = user;
 			return {
 				value:
-					{id: id, name: name},
+					{id, name, avatarURL},
 				label: <div><img src={avatarURL} alt={`${name}'s avatar`}/> {' '} {name} </div>
 			}
 		});
