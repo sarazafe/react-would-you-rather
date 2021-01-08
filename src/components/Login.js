@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {withRouter} from 'react-router-dom'
-import {setLoggedUser} from "../actions/loggedUser";
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import Select from 'react-select';
+import {setLoggedUser} from '../actions/loggedUser';
 
 /**
  * Component for login page
@@ -13,11 +14,11 @@ class Login extends Component {
 
 	/**
 	 * Handler for updating the selected user property of state
-	 * @param event - the event with selected user
+	 * @param selectedUser - the selected user
 	 */
-	handleSelectedUserChange = event => {
+	handleSelectedUserChange = selectedUser => {
 		this.setState({
-			selectedUser: event.target.value,
+			selectedUser,
 		});
 	};
 
@@ -26,8 +27,22 @@ class Login extends Component {
 	 * It updates the store with selected user and goes back.
 	 */
 	loginUser = () => {
-		this.props.dispatch(setLoggedUser(this.state.selectedUser));
+		this.props.dispatch(setLoggedUser(this.state.selectedUser.value));
 		this.props.history.goBack();
+	}
+
+	/**
+	 * Gets the selector's options from users. Each option will have the user's avatar
+	 * and name
+	 * @param users - list of users
+	 * @returns {*} - an array with the options that will be used to fill the selector
+	 */
+	getSelectorOptions = users=> {
+		return users.map(user => (
+			{
+				value: user.id, label: <div><img src={user.avatarURL} alt={`${user.name}'s avatar`} /> {' '} {user.name} </div>
+			}
+		));
 	}
 
 	render() {
@@ -44,17 +59,17 @@ class Login extends Component {
 				<div className='login-body'>
 					<div className='login-body-title'>Log in</div>
 					<div className='login-body-users'>
-						<select value={selectedUser || 'selectUser'} onChange={this.handleSelectedUserChange}>
-							<option value="selectUser" disabled>Select user</option>
-							{
-								users.map(user => (
-									<option key={user.id} value={user.id}>{user.name}</option>
-								))
-							}
-						</select>
+						<Select
+							name='form-field-name'
+							value={selectedUser}
+							onChange={this.handleSelectedUserChange}
+							placeholder='Select user...'
+							options={this.getSelectorOptions(users)}
+							searchable
+						/>
 					</div>
 					<div className='login-body-button'>
-						<button onClick={this.loginUser}>
+						<button onClick={this.loginUser} disabled={!selectedUser}>
 							Log in
 						</button>
 					</div>
