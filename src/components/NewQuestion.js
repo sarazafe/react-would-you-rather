@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import Header from "./Header";
 import {Nav} from "./Nav";
 import {handleAddNewQuestion} from "../actions/questions";
@@ -14,13 +14,13 @@ class NewQuestion extends Component {
 		optionTwo: '',
 	};
 
-	updateOptionOne = event=>{
+	updateOptionOne = event => {
 		this.setState({
 			optionOne: event.target.value,
 		})
 	};
 
-	updateOptionTwo = event=>{
+	updateOptionTwo = event => {
 		this.setState({
 			optionTwo: event.target.value,
 		})
@@ -30,7 +30,7 @@ class NewQuestion extends Component {
 	 * Dispatches the action that add a new question to the state of the store
 	 * @param event - the submit event
 	 */
-	addNewQuestion = event=> {
+	addNewQuestion = event => {
 		event.preventDefault();
 		const {optionOne, optionTwo} = this.state;
 		const {loggedUser, dispatch} = this.props;
@@ -39,10 +39,7 @@ class NewQuestion extends Component {
 			optionTwoText: optionTwo,
 			author: loggedUser.id,
 		}));
-		this.setState({
-			optionOne: '',
-			optionTwo: '',
-		});
+		this.props.history.push('/');
 	};
 
 	render() {
@@ -81,4 +78,4 @@ const mapStateToProps = ({loggedUser}) => {
 	};
 };
 
-export default connect(mapStateToProps)(NewQuestion);
+export default withRouter(connect(mapStateToProps)(NewQuestion));
