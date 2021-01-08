@@ -1,6 +1,6 @@
 import {
 	_getUsers,
-	_getQuestions,
+	_getQuestions, _saveQuestion,
 } from './_DATA.js';
 
 /**
@@ -15,4 +15,13 @@ export const getInitialData = ()=> {
 		users,
 		questions,
 	}))
+}
+
+/**
+ * Saves a question
+ * @param question - the question to be saved
+ * @returns {Promise<unknown>}
+ */
+export const saveQuestion = (question) => {
+	return _saveQuestion(question);
 }
