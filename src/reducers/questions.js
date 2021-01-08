@@ -1,4 +1,4 @@
-import {GET_QUESTIONS} from "../actions/questions";
+import {ADD_QUESTION, GET_QUESTIONS} from "../actions/questions";
 
 /**
  * Reducer for questions
@@ -11,8 +11,13 @@ export const questions = (state = {}, action) => {
 			return {
 				...state,
 				...action.questions
-			}
+			};
+		case ADD_QUESTION:
+			return {
+				...state,
+				[action.question.id]: action.question,
+			};
 		default :
-			return state
+			return state;
 	}
 };
