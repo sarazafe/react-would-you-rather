@@ -4,7 +4,6 @@ import {GET_USERS} from '../actions/users';
  * Reducer for users
  * @param state the state
  * @param action the action
- * @returns {{}}
  */
 export const users = (state = {}, action) => {
 	switch (action.type) {
