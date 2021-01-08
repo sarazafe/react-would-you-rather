@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import Header from "./Header";
 
 /**
  * Component for leader board pages
@@ -14,6 +15,7 @@ class LeaderBoard extends Component {
 
 		return (
 			<div>
+				<Header/>
 				LeaderBoard page
 			</div>
 		);
