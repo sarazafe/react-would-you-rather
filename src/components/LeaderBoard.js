@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 /**
  * Component for leader board pages
  */
-export default class LeaderBoard extends Component {
+class LeaderBoard extends Component {
 	render() {
+		const {loggedUser} = this.props;
+		if (!loggedUser) {
+			return <Redirect push to='login'/>;
+		}
+
 		return (
 			<div>
 				LeaderBoard page
@@ -12,3 +19,11 @@ export default class LeaderBoard extends Component {
 		);
 	}
 }
+
+const mapStateToProps = ({loggedUser}) => {
+	return {
+		loggedUser,
+	};
+};
+
+export default connect(mapStateToProps)(LeaderBoard);
