@@ -37,12 +37,15 @@ class Login extends Component {
 	 * @param users - list of users
 	 * @returns {*} - an array with the options that will be used to fill the selector
 	 */
-	getSelectorOptions = users=> {
-		return users.map(user => (
-			{
-				value: user.id, label: <div><img src={user.avatarURL} alt={`${user.name}'s avatar`} /> {' '} {user.name} </div>
+	getSelectorOptions = users => {
+		return users.map(user => {
+			const {id, name, avatarURL} = user;
+			return {
+				value:
+					{id: id, name: name},
+				label: <div><img src={avatarURL} alt={`${name}'s avatar`}/> {' '} {name} </div>
 			}
-		));
+		});
 	}
 
 	render() {
