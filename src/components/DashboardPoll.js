@@ -9,11 +9,11 @@ class DashboardPoll extends Component {
 		id: PropTypes.string.isRequired,
 		poll: PropTypes.string.isRequired,
 		author: PropTypes.object.isRequired,
-		viewPoll: PropTypes.func.isRequired,
+		onViewPoll: PropTypes.func.isRequired,
 	};
 
 	render(){
-		const {id, poll, author: {name, avatarURL}, viewPoll} = this.props;
+		const {id, poll, author: {name, avatarURL}, onViewPoll} = this.props;
 		return (
 			<div className='dashboard-poll'>
 				<div className='dashboard-poll-header'>
@@ -29,7 +29,7 @@ class DashboardPoll extends Component {
 						<div
 							className='dashboard-poll-body-question-option'>{poll}</div>
 						<div className='dashboard-poll-body-question-button'>
-							<button onClick={() => viewPoll(id)}>
+							<button onClick={() => onViewPoll(id)}>
 								View poll
 							</button>
 						</div>

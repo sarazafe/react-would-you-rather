@@ -11,8 +11,21 @@ import DashboardPoll from "./DashboardPoll";
  * Component for home page
  */
 class Dashboard extends Component {
-	viewPoll = id => {
+
+	/**
+	 * Goes to the detail of a poll
+	 * @param id - the id of the poll to show
+	 */
+	goToPoll = id => {
 		console.log('View poll', id);
+	};
+
+	/**
+	 * Go to answer a poll
+	 * @param id - the id of the poll to be answered
+	 */
+	goToAnswerPoll = id => {
+		console.log('Answer poll', id);
 	};
 
 	render() {
@@ -35,7 +48,7 @@ class Dashboard extends Component {
 						<TabPanel>
 							{
 								unansweredQuestions.map(({id, optionOne: {text}, author}) => (
-									<DashboardPoll id={id} poll={text} author={author} viewPoll={this.viewPoll}
+									<DashboardPoll id={id} poll={text} author={author} onViewPoll={this.goToAnswerPoll}
 									               key={id}/>
 								))
 							}
@@ -46,7 +59,7 @@ class Dashboard extends Component {
 									<DashboardPoll
 										id={id}
 										poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-										author={author} viewPoll={this.viewPoll} key={id}/>
+										author={author} onViewPoll={this.goToPoll} key={id}/>
 								))
 							}
 						</TabPanel>
