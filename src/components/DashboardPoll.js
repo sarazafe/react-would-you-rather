@@ -10,10 +10,11 @@ class DashboardPoll extends Component {
 		poll: PropTypes.string.isRequired,
 		author: PropTypes.object.isRequired,
 		onViewPoll: PropTypes.func.isRequired,
+		buttonLabel: PropTypes.func.isRequired,
 	};
 
 	render(){
-		const {id, poll, author: {name, avatarURL}, onViewPoll} = this.props;
+		const {id, poll, author: {name, avatarURL}, onViewPoll, buttonLabel} = this.props;
 		return (
 			<div className='dashboard-poll'>
 				<div className='dashboard-poll-header'>
@@ -30,7 +31,7 @@ class DashboardPoll extends Component {
 							className='dashboard-poll-body-question-option'>{poll}</div>
 						<div className='dashboard-poll-body-question-button'>
 							<button onClick={() => onViewPoll(id)}>
-								View poll
+								{buttonLabel}
 							</button>
 						</div>
 					</div>

@@ -50,7 +50,7 @@ class Dashboard extends Component {
 							{
 								unansweredQuestions.map(({id, optionOne: {text}, author}) => (
 									<DashboardPoll id={id} poll={text} author={author} onViewPoll={this.goToAnswerPoll}
-									               key={id}/>
+									               buttonLabel='Answer poll' key={id}/>
 								))
 							}
 						</TabPanel>
@@ -60,7 +60,7 @@ class Dashboard extends Component {
 									<DashboardPoll
 										id={id}
 										poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-										author={author} onViewPoll={this.goToPoll} key={id}/>
+										author={author} onViewPoll={this.goToPoll} buttonLabel='View poll' key={id}/>
 								))
 							}
 						</TabPanel>
