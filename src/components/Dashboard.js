@@ -5,6 +5,7 @@ import Header from "./Header";
 import {Nav} from "./Nav";
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import {withRouter} from 'react-router-dom';
 import DashboardPoll from "./DashboardPoll";
 
 /**
@@ -17,7 +18,7 @@ class Dashboard extends Component {
 	 * @param id - the id of the poll to show
 	 */
 	goToPoll = id => {
-		console.log('View poll', id);
+		this.props.history.push(`/questions/${id}`);
 	};
 
 	/**
@@ -113,4 +114,4 @@ const mapStateToProps = ({loggedUser, questions, users}) => {
 	};
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default withRouter(connect(mapStateToProps)(Dashboard));
