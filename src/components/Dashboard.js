@@ -3,13 +3,19 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import Header from "./Header";
 import {Nav} from "./Nav";
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 /**
  * Component for home page
  */
 class Dashboard extends Component {
+	viewPoll = () => {
+		console.log('View poll');
+	};
+
 	render() {
-		const {loggedUser} = this.props;
+		const {loggedUser, answeredQuestions, unansweredQuestions} = this.props;
 		if (!loggedUser) {
 			return <Redirect push to='login'/>;
 		}
@@ -18,7 +24,73 @@ class Dashboard extends Component {
 			<div>
 				<Header/>
 				<Nav/>
-				Dashboard page
+				<div className='dashboard'>
+					<Tabs>
+						<TabList>
+							<Tab>Unanswered questions</Tab>
+							<Tab>Answered questions</Tab>
+						</TabList>
+
+						<TabPanel>
+							{
+								unansweredQuestions.map(({optionOne: {text}, author: {id, name, avatarURL}}) => (
+									<div className='dashboard-poll'>
+										<div className='dashboard-poll-header'>
+											{name} asks:
+										</div>
+										<div className='dashboard-poll-body'>
+											<div className='dashboard-poll-body-avatar'><img src={avatarURL}
+											                                                 alt={`${name}'s avatar`}/>
+											</div>
+											<div className='dashboard-poll-body-question'>
+												<div className='dashboard-poll-body-question-title'>Would you rather?
+												</div>
+												<div
+													className='dashboard-poll-body-question-option'>{text}</div>
+												<div className='dashboard-poll-body-question-button'>
+													<button onClick={this.viewPoll}>
+														View poll
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								))
+							}
+						</TabPanel>
+						<TabPanel>
+							{
+								answeredQuestions.map(({optionOne, optionTwo, author: {id, name, avatarURL}}) => (
+									<div className='dashboard-poll'>
+										<div className='dashboard-poll-header'>
+											{name} asks:
+										</div>
+										<div className='dashboard-poll-body'>
+											<div className='dashboard-poll-body-avatar'><img src={avatarURL}
+											                                                 alt={`${name}'s avatar`}/>
+											</div>
+											<div className='dashboard-poll-body-question'>
+												<div className='dashboard-poll-body-question-title'>Would you rather?
+												</div>
+												<div
+													className='dashboard-poll-body-question-option'>
+													{
+														optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text
+													}
+												</div>
+												<div className='dashboard-poll-body-question-button'>
+													<button onClick={this.viewPoll}>
+														View poll
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								))
+							}
+						</TabPanel>
+					</Tabs>
+				</div>
 			</div>
 		);
 	}
@@ -32,6 +104,9 @@ class Dashboard extends Component {
  * @returns an object with the following structure: {answeredQuestions: [], unansweredQuestions: []}
  */
 const getAnsweredUnasweredQuestions = (questions, users, loggedUser) => {
+	if (!loggedUser) {
+		return {};
+	}
 	return Object.values(questions).reduce((classifyQuestions, question) => {
 		let questionKey;
 		if (question.optionOne.votes.find(v => v === loggedUser.id) || question.optionTwo.votes.find(v => v === loggedUser.id)) {
@@ -59,8 +134,8 @@ const mapStateToProps = ({loggedUser, questions, users}) => {
 	const answeredUnAnsweredQuestions = getAnsweredUnasweredQuestions(questions, Object.values(users), loggedUser);
 	return {
 		loggedUser,
-		answeredQuestions: answeredUnAnsweredQuestions.answeredQuestions.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
-		unansweredQuestions: answeredUnAnsweredQuestions.unansweredQuestions.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
+		answeredQuestions: answeredUnAnsweredQuestions.answeredQuestions?.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
+		unansweredQuestions: answeredUnAnsweredQuestions.unansweredQuestions?.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
 	};
 };
 
