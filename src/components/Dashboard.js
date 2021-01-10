@@ -24,9 +24,30 @@ class Dashboard extends Component {
 	}
 }
 
-const mapStateToProps = ({loggedUser}) => {
+/**
+ * Gets an object with questions organized in answered and unanswered questions by logged user
+ * @param questions - the list of questions
+ * @param loggedUser - user in session
+ * @returns an object with the following structure: {answeredQuestions: [], unansweredQuestions: []}
+ */
+const getAnsweredUnasweredQuestions = (questions, loggedUser) => {
+	return Object.values(questions).reduce((acc, item) => {
+		if(item.optionOne.votes.find(v => v === loggedUser.id) || item.optionTwo.votes.find(v => v === loggedUser.id)){
+			acc['answeredQuestions'] = acc['answeredQuestions'].concat(item);
+		}else{
+			acc['unansweredQuestions'] = acc['unansweredQuestions'].concat(item);
+		}
+
+		return acc;
+	}, {answeredQuestions: [], unansweredQuestions: []})
+};
+
+const mapStateToProps = ({loggedUser, questions}) => {
+	const answeredUnAnsweredQuestions = getAnsweredUnasweredQuestions(questions, loggedUser);
 	return {
 		loggedUser,
+		answeredQuestions: answeredUnAnsweredQuestions.answeredQuestions.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
+		unansweredQuestions: answeredUnAnsweredQuestions.unansweredQuestions.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
 	};
 };
 
