@@ -5,13 +5,14 @@ import Header from "./Header";
 import {Nav} from "./Nav";
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import DashboardPoll from "./DashboardPoll";
 
 /**
  * Component for home page
  */
 class Dashboard extends Component {
-	viewPoll = () => {
-		console.log('View poll');
+	viewPoll = id => {
+		console.log('View poll', id);
 	};
 
 	render() {
@@ -33,59 +34,19 @@ class Dashboard extends Component {
 
 						<TabPanel>
 							{
-								unansweredQuestions.map(({optionOne: {text}, author: {id, name, avatarURL}}) => (
-									<div className='dashboard-poll'>
-										<div className='dashboard-poll-header'>
-											{name} asks:
-										</div>
-										<div className='dashboard-poll-body'>
-											<div className='dashboard-poll-body-avatar'><img src={avatarURL}
-											                                                 alt={`${name}'s avatar`}/>
-											</div>
-											<div className='dashboard-poll-body-question'>
-												<div className='dashboard-poll-body-question-title'>Would you rather?
-												</div>
-												<div
-													className='dashboard-poll-body-question-option'>{text}</div>
-												<div className='dashboard-poll-body-question-button'>
-													<button onClick={this.viewPoll}>
-														View poll
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
+								unansweredQuestions.map(({id, optionOne: {text}, author}) => (
+									<DashboardPoll id={id} poll={text} author={author} viewPoll={this.viewPoll}
+									               key={id}/>
 								))
 							}
 						</TabPanel>
 						<TabPanel>
 							{
-								answeredQuestions.map(({optionOne, optionTwo, author: {id, name, avatarURL}}) => (
-									<div className='dashboard-poll'>
-										<div className='dashboard-poll-header'>
-											{name} asks:
-										</div>
-										<div className='dashboard-poll-body'>
-											<div className='dashboard-poll-body-avatar'><img src={avatarURL}
-											                                                 alt={`${name}'s avatar`}/>
-											</div>
-											<div className='dashboard-poll-body-question'>
-												<div className='dashboard-poll-body-question-title'>Would you rather?
-												</div>
-												<div
-													className='dashboard-poll-body-question-option'>
-													{
-														optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text
-													}
-												</div>
-												<div className='dashboard-poll-body-question-button'>
-													<button onClick={this.viewPoll}>
-														View poll
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
+								answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
+									<DashboardPoll
+										id={id}
+										poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
+										author={author} viewPoll={this.viewPoll} key={id}/>
 								))
 							}
 						</TabPanel>
@@ -134,8 +95,8 @@ const mapStateToProps = ({loggedUser, questions, users}) => {
 	const answeredUnAnsweredQuestions = getAnsweredUnasweredQuestions(questions, Object.values(users), loggedUser);
 	return {
 		loggedUser,
-		answeredQuestions: answeredUnAnsweredQuestions.answeredQuestions?.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
-		unansweredQuestions: answeredUnAnsweredQuestions.unansweredQuestions?.sort((q1, q2) => (q1.timestamp - q2.timestamp)),
+		answeredQuestions: answeredUnAnsweredQuestions.answeredQuestions?.sort((q1, q2) => (q2.timestamp - q1.timestamp)),
+		unansweredQuestions: answeredUnAnsweredQuestions.unansweredQuestions?.sort((q1, q2) => (q2.timestamp - q1.timestamp)),
 	};
 };
 
