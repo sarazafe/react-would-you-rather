@@ -14,19 +14,11 @@ import DashboardPoll from "./DashboardPoll";
 class Dashboard extends Component {
 
 	/**
-	 * Goes to the detail of a poll
-	 * @param id - the id of the poll to show
+	 * Goes to the detail of a question
+	 * @param id - the id of the question to show
 	 */
-	goToPoll = id => {
+	goToQuestionDetails = id => {
 		this.props.history.push(`/questions/${id}`);
-	};
-
-	/**
-	 * Go to answer a poll
-	 * @param id - the id of the poll to be answered
-	 */
-	goToAnswerPoll = id => {
-		console.log('Answer poll', id);
 	};
 
 	render() {
@@ -49,7 +41,7 @@ class Dashboard extends Component {
 						<TabPanel>
 							{
 								unansweredQuestions.map(({id, optionOne: {text}, author}) => (
-									<DashboardPoll id={id} poll={text} author={author} onViewPoll={this.goToAnswerPoll}
+									<DashboardPoll id={id} poll={text} author={author} onViewPoll={this.goToQuestionDetails}
 									               buttonLabel='Answer poll' key={id}/>
 								))
 							}
@@ -60,7 +52,7 @@ class Dashboard extends Component {
 									<DashboardPoll
 										id={id}
 										poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-										author={author} onViewPoll={this.goToPoll} buttonLabel='View poll' key={id}/>
+										author={author} onViewPoll={this.goToQuestionDetails} buttonLabel='View poll' key={id}/>
 								))
 							}
 						</TabPanel>
@@ -74,7 +66,7 @@ class Dashboard extends Component {
 /**
  * Gets an object with questions organized in answered and unanswered questions by logged user
  * @param questions - the list of questions
- * @param users - the list of users
+ * @param users - the map of users
  * @param loggedUser - user in session
  * @returns an object with the following structure: {answeredQuestions: [], unansweredQuestions: []}
  */
@@ -90,7 +82,7 @@ const getAnsweredUnasweredQuestions = (questions, users, loggedUser) => {
 			questionKey = 'unansweredQuestions';
 		}
 
-		const {id, name, avatarURL} = users.find(user => user.id === question.author);
+		const {id, name, avatarURL} = users[question.author];
 		const filledQuestion = {
 			...question,
 			author: {
@@ -106,7 +98,7 @@ const getAnsweredUnasweredQuestions = (questions, users, loggedUser) => {
 };
 
 const mapStateToProps = ({loggedUser, questions, users}) => {
-	const answeredUnAnsweredQuestions = getAnsweredUnasweredQuestions(questions, Object.values(users), loggedUser);
+	const answeredUnAnsweredQuestions = getAnsweredUnasweredQuestions(questions, users, loggedUser);
 	return {
 		loggedUser,
 		answeredQuestions: answeredUnAnsweredQuestions.answeredQuestions?.sort((q1, q2) => (q2.timestamp - q1.timestamp)),
