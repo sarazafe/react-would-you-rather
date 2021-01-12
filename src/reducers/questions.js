@@ -1,4 +1,4 @@
-import {ADD_QUESTION, GET_QUESTIONS} from "../actions/questions";
+import {ADD_QUESTION, ANSWER_QUESTION, GET_QUESTIONS} from "../actions/questions";
 
 /**
  * Reducer for questions
@@ -16,6 +16,18 @@ export const questions = (state = {}, action) => {
 			return {
 				...state,
 				[action.question.id]: action.question,
+			};
+		case ANSWER_QUESTION:
+			const {text, votes} = state[action.qid][action.answer];
+			return {
+				...state,
+				[action.qid]: {
+					...state[action.qid],
+					[action.answer]: {
+						text,
+						votes: votes.concat(action.user),
+					},
+				}
 			};
 		default :
 			return state;
