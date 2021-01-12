@@ -1,6 +1,8 @@
 import {
 	_getUsers,
-	_getQuestions, _saveQuestion,
+	_getQuestions,
+	_saveQuestion,
+	_saveQuestionAnswer,
 } from './_DATA.js';
 
 /**
@@ -24,4 +26,15 @@ export const getInitialData = ()=> {
  */
 export const saveQuestion = (question) => {
 	return _saveQuestion(question);
+}
+
+/**
+ * Answers the poll
+ * @param loggedUser - user in session
+ * @param qid - id of the question
+ * @param answer - the selected answer (one of these: optionOne or optionTwo)
+ * @returns {Promise<unknown>}
+ */
+export const answerPoll = ({ loggedUser, qid, answer }) => {
+	return _saveQuestionAnswer({ authedUser: loggedUser, qid, answer })
 }
