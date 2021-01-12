@@ -55,7 +55,7 @@ class NewQuestion extends Component {
 				<Nav/>
 				<div className='new-question'>
 					<div className='new-question-title'>Would you rather?</div>
-					<form className='new question-form' onSubmit={this.addNewQuestion}>
+					<form className='new-question-form' onSubmit={this.addNewQuestion}>
 						<div className='new-question-form-option'>
 							<input type='text' value={optionOne} onChange={this.updateOptionOne}/>
 						</div>
