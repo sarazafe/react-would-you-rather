@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Select from 'react-select';
 import {setLoggedUser} from '../actions/loggedUser';
+import './Login.css';
 
 /**
  * Component for login page
@@ -43,7 +44,7 @@ class Login extends Component {
 			return {
 				value:
 					{id, name, avatarURL},
-				label: <div><img src={avatarURL} alt={`${name}'s avatar`}/> {' '} {name} </div>
+				label: <div className='login-body-users-selected-user'><img src={avatarURL} alt={`${name}'s avatar`}/><span>{name}</span></div>
 			}
 		});
 	}
@@ -55,12 +56,11 @@ class Login extends Component {
 		return (
 			<div className='login'>
 				<div className='login-header'>
-					<div className='login-header-title'>Welcome to 'Would you rather'!!</div>
+					<div className='login-header-title'>Welcome to <span>Would you rather</span></div>
 					<div className='login-header-subtitle'>Please, login before continue</div>
 				</div>
 
 				<div className='login-body'>
-					<div className='login-body-title'>Log in</div>
 					<div className='login-body-users'>
 						<Select
 							name='form-field-name'
