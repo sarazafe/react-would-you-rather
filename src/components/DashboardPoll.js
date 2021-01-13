@@ -10,7 +10,7 @@ class DashboardPoll extends Component {
 		poll: PropTypes.string.isRequired,
 		author: PropTypes.object.isRequired,
 		onViewPoll: PropTypes.func.isRequired,
-		buttonLabel: PropTypes.func.isRequired,
+		buttonLabel: PropTypes.string.isRequired,
 	};
 
 	render(){
