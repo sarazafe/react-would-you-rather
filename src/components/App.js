@@ -9,6 +9,7 @@ import LeaderBoard from "./LeaderBoard";
 import Login from "./Login";
 import {handleInitialData} from "../common/common";
 import {QuestionNotFound} from "./QuestionNotFound";
+import './App.css';
 
 class App extends Component {
 	componentDidMount() {
@@ -20,7 +21,7 @@ class App extends Component {
 			<Router>
 				<Fragment>
 					<LoadingBar/>
-					<div className='container'>
+					<div className='app'>
 						<div>
 							<Route path='/' exact component={Dashboard}/>
 							<Route path='/login' exact component={Login}/>
