@@ -8,6 +8,7 @@ import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import Login from "./Login";
 import {handleInitialData} from "../common/common";
+import {QuestionNotFound} from "./QuestionNotFound";
 
 class App extends Component {
 	componentDidMount() {
@@ -26,6 +27,7 @@ class App extends Component {
 							<Route path='/questions/:question_id' component={QuestionDetails}/>
 							<Route path='/add' component={NewQuestion}/>
 							<Route path='/leaderboard' component={LeaderBoard}/>
+							<Route path='/404' component={QuestionNotFound}/>
 						</div>
 					</div>
 				</Fragment>

@@ -16,6 +16,11 @@ class QuestionDetails extends Component {
 		if (!loggedUser) {
 			return <Redirect push to='/login'/>;
 		}
+
+		if (!this.props.question) {
+			return <Redirect push to='/404'/>;
+		}
+
 		const {question: {id, author: {name, avatarURL}, optionOne, optionTwo, totalOfVotes, unanswered}} = this.props;
 		return (
 			<div>
@@ -52,8 +57,6 @@ class QuestionDetails extends Component {
  * @returns the question with all needed data
  */
 const getQuestionData = (question, users, loggedUser) => {
-	// TODO check if question exists or not -> 404 page
-
 	// Get author info
 	const {id, name, avatarURL} = users[question.author];
 
@@ -96,7 +99,7 @@ const getQuestionData = (question, users, loggedUser) => {
 const mapStateToProps = ({loggedUser, users, questions}, {match: {params: {question_id}}}) => {
 	return {
 		loggedUser,
-		question: questions[question_id] && loggedUser ? getQuestionData(questions[question_id], users, loggedUser) : {},
+		question: questions[question_id] && loggedUser ? getQuestionData(questions[question_id], users, loggedUser) : null,
 	};
 };
 
