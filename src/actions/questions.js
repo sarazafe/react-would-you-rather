@@ -1,5 +1,6 @@
 import {saveQuestion, answerPoll} from "../common/api";
 import {showLoading, hideLoading} from 'react-redux-loading';
+import {addCreatedQuestionToUser} from "./users";
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
@@ -16,6 +17,11 @@ export const getQuestions = questions => {
 	};
 };
 
+/**
+ * Action for adding a new question to the store
+ * @param question - the question
+ * @returns {{question: *, type: string}}
+ */
 export const addQuestion = question => {
 	return {
 		type: ADD_QUESTION,
@@ -23,6 +29,13 @@ export const addQuestion = question => {
 	};
 };
 
+/**
+ * Action for answering a question
+ * @param user - the user that answer the question
+ * @param qid - the id of the question
+ * @param answer - the chosen option
+ * @returns {{answer: *, type: string, user: *, qid: *}}
+ */
 export const answerQuestion = ({user, qid, answer}) => {
 	return {
 		type: ANSWER_QUESTION,
@@ -41,7 +54,10 @@ export const handleAddNewQuestion = question => {
 	return (dispatch) => {
 		dispatch(showLoading())
 		return saveQuestion(question)
-			.then((question) => dispatch(addQuestion(question)))
+			.then((question) => {
+				dispatch(addQuestion(question))
+				dispatch(addCreatedQuestionToUser(question))
+			})
 			.then(() => dispatch(hideLoading()))
 	}
 };
@@ -57,7 +73,7 @@ export const handleAnswerQuestion = ({loggedUser, qid, answer}) => {
 	return (dispatch) => {
 		dispatch(showLoading())
 		return answerPoll({loggedUser, qid, answer})
-			.then(() => dispatch(answerQuestion({user:loggedUser, qid, answer})))
+			.then(() => dispatch(answerQuestion({user: loggedUser, qid, answer})))
 			.then(() => dispatch(hideLoading()))
 	}
 };

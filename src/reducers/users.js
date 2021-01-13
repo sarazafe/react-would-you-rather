@@ -1,4 +1,4 @@
-import {GET_USERS} from '../actions/users';
+import {ADD_CREATED_QUESTION_TO_USER, GET_USERS} from '../actions/users';
 
 /**
  * Reducer for users
@@ -11,7 +11,16 @@ export const users = (state = {}, action) => {
 			return {
 				...state,
 				...action.users
-			}
+			};
+		case ADD_CREATED_QUESTION_TO_USER:
+			const {questions} = state[action.author];
+			return  {
+				...state,
+				[action.author]: {
+					...state[action.author],
+					questions: questions.concat(action.qid),
+				}
+			};
 		default :
 			return state
 	}
