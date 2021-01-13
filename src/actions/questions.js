@@ -1,6 +1,6 @@
 import {saveQuestion, answerPoll} from "../common/api";
 import {showLoading, hideLoading} from 'react-redux-loading';
-import {addCreatedQuestionToUser} from "./users";
+import {addAnsweredQuestionToUser, addCreatedQuestionToUser} from "./users";
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
@@ -73,7 +73,10 @@ export const handleAnswerQuestion = ({loggedUser, qid, answer}) => {
 	return (dispatch) => {
 		dispatch(showLoading())
 		return answerPoll({loggedUser, qid, answer})
-			.then(() => dispatch(answerQuestion({user: loggedUser, qid, answer})))
+			.then(() => {
+				dispatch(answerQuestion({user: loggedUser, qid, answer}))
+				dispatch(addAnsweredQuestionToUser({user: loggedUser, qid, answer}))
+			})
 			.then(() => dispatch(hideLoading()))
 	}
 };
