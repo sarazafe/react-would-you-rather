@@ -1,0 +1,39 @@
+.header, .header-logged-user, .header-logged-user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-title {
+    flex: 3;
+    font-size: 2em;
+    font-style: italic;
+}
+
+.header-logged-user {
+    flex: 2;
+}
+
+.header-logged-user-avatar img {
+    height: 2em;
+    width: 2em;
+    border-radius: 1em;
+    border: 1px solid #9A8C98;
+}
+
+.header-logged-user-name {
+    margin: 0 1em;
+    font-size: 0.8em;
+    color: #4A4E69;
+    font-weight: 600;
+}
+
+.header-logged-user-logout button {
+    background-color: #ffffff;
+    font-size: 0.8em;
+    border: none;
+}
+
+.header-logged-user-logout button:hover {
+    color: #9A8C98;
+}
