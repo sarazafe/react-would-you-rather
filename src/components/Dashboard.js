@@ -41,7 +41,8 @@ class Dashboard extends Component {
 						<TabPanel>
 							{
 								unansweredQuestions.map(({id, optionOne: {text}, author}) => (
-									<DashboardPoll id={id} poll={text} author={author} onViewPoll={this.goToQuestionDetails}
+									<DashboardPoll id={id} poll={text} author={author}
+									               onViewPoll={this.goToQuestionDetails}
 									               buttonLabel='Answer poll' key={id}/>
 								))
 							}
@@ -52,7 +53,8 @@ class Dashboard extends Component {
 									<DashboardPoll
 										id={id}
 										poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-										author={author} onViewPoll={this.goToQuestionDetails} buttonLabel='View poll' key={id}/>
+										author={author} onViewPoll={this.goToQuestionDetails} buttonLabel='View poll'
+										key={id}/>
 								))
 							}
 						</TabPanel>
@@ -71,9 +73,6 @@ class Dashboard extends Component {
  * @returns an object with the following structure: {answeredQuestions: [], unansweredQuestions: []}
  */
 const getAnsweredUnasweredQuestions = (questions, users, loggedUser) => {
-	if (!loggedUser) {
-		return {};
-	}
 	return Object.values(questions).reduce((classifyQuestions, question) => {
 		let questionKey;
 		if (question.optionOne.votes.find(v => v === loggedUser.id) || question.optionTwo.votes.find(v => v === loggedUser.id)) {
@@ -98,6 +97,10 @@ const getAnsweredUnasweredQuestions = (questions, users, loggedUser) => {
 };
 
 const mapStateToProps = ({loggedUser, questions, users}) => {
+	if (!loggedUser) {
+		return {};
+	}
+
 	const answeredUnAnsweredQuestions = getAnsweredUnasweredQuestions(questions, users, loggedUser);
 	return {
 		loggedUser,

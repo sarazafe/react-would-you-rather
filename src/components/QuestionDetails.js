@@ -97,9 +97,13 @@ const getQuestionData = (question, users, loggedUser) => {
 }
 
 const mapStateToProps = ({loggedUser, users, questions}, {match: {params: {question_id}}}) => {
+	if(!loggedUser){
+		return {};
+	}
+
 	return {
 		loggedUser,
-		question: questions[question_id] && loggedUser ? getQuestionData(questions[question_id], users, loggedUser) : null,
+		question: questions[question_id] ? getQuestionData(questions[question_id], users, loggedUser) : null,
 	};
 };
 
