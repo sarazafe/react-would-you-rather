@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {handleAnswerQuestion} from "../actions/questions";
+import './AnswerPoll.css';
 
 /**
  * Component for form to answer a poll
@@ -62,7 +63,7 @@ class AnswerPoll extends Component {
 	}
 }
 
-const mapStateToProps = ({loggedUser:{id}}) => {
+const mapStateToProps = ({loggedUser: {id}}) => {
 	return {
 		loggedUser: id,
 	};

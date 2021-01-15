@@ -1,0 +1,14 @@
+.answer-poll-form label {
+    font-style: italic;
+    margin-left: 0.5em;
+}
+
+.answer-poll-form-separator {
+    margin: 0.5em 0;
+    font-size: 1.2em;
+}
+
+.answer-poll-form button {
+    margin-top: 2em;
+    width: 100%;
+}
