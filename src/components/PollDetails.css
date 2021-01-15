@@ -7,6 +7,10 @@
     font-style: italic;
 }
 
+.poll-details-option.poll-details-option--answered{
+    font-weight: 600;
+}
+
 .poll-details-option-votes {
     text-align: right;
     margin-top: 1em;
@@ -17,6 +21,10 @@
     height: 20px;
 }
 
-.RSPBprogressBar .RSPBprogression {
+.poll-details-option.poll-details-option--answered .poll-details-option-percentage .RSPBprogression {
     background-color: #4A4E69;
+}
+
+.RSPBprogressBar .RSPBprogression {
+    background-color: #C9ADA7;
 }
