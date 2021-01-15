@@ -85,12 +85,12 @@ const getQuestionData = (question, users, loggedUser) => {
 		...questionData,
 		optionOne: {
 			...optionOne,
-			percentage: (optionOne.votes.length / totalOfVotes) * 100,
+			percentage: Math.round((optionOne.votes.length / totalOfVotes) * 100),
 			answered: optionOne.votes.findIndex(v => v === loggedUser.id) >= 0
 		},
 		optionTwo: {
 			...optionTwo,
-			percentage: (optionTwo.votes.length / totalOfVotes) * 100,
+			percentage: Math.round((optionTwo.votes.length / totalOfVotes) * 100),
 			answered: optionTwo.votes.findIndex(v => v === loggedUser.id) >= 0
 		},
 		totalOfVotes,
