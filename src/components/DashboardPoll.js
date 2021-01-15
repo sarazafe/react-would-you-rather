@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import './DashboardPoll.css';
+import {QuestionCard} from "./QuestionCard";
 
 /**
  * Component a poll shown in the dashboard
@@ -16,28 +17,21 @@ class DashboardPoll extends Component {
 
 	render(){
 		const {id, poll, author: {name, avatarURL}, onViewPoll, buttonLabel} = this.props;
+
 		return (
-			<div className='dashboard-poll'>
-				<div className='dashboard-poll-header'>
-					<span>{name} asks:</span>
-				</div>
-				<div className='dashboard-poll-body'>
-					<div className='dashboard-poll-body-avatar'>
-						<img src={avatarURL} alt={`${name}'s avatar`}/>
+			<QuestionCard name={name} avatarURL={avatarURL}>
+				<div className='dashboard-poll-body-question'>
+					<div className='dashboard-poll-body-question-title'>Would you rather?
 					</div>
-					<div className='dashboard-poll-body-question'>
-						<div className='dashboard-poll-body-question-title'>Would you rather?
-						</div>
-						<div
-							className='dashboard-poll-body-question-option'>{poll}</div>
-						<div className='dashboard-poll-body-question-button'>
-							<button onClick={() => onViewPoll(id)}>
-								{buttonLabel}
-							</button>
-						</div>
+					<div
+						className='dashboard-poll-body-question-option'>{poll}</div>
+					<div className='dashboard-poll-body-question-button'>
+						<button onClick={() => onViewPoll(id)}>
+							{buttonLabel}
+						</button>
 					</div>
 				</div>
-			</div>
+			</QuestionCard>
 		);
 	}
 }
