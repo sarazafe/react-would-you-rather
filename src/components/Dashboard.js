@@ -3,15 +3,23 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import Header from "./Header";
 import {Nav} from "./Nav";
-import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 import {withRouter} from 'react-router-dom';
 import DashboardPoll from "./DashboardPoll";
+import './Dashboard.css';
+
+const TABS = {
+	UNANSWERD_QUESTIONS: 'UNANSWERD_QUESTIONS',
+	ANSWERED_QUESTIONS: 'ANSWERED_QUESTIONS',
+}
 
 /**
  * Component for home page
  */
 class Dashboard extends Component {
+
+	state = {
+		selectedTab: TABS.UNANSWERD_QUESTIONS,
+	};
 
 	/**
 	 * Goes to the detail of a question
@@ -21,8 +29,23 @@ class Dashboard extends Component {
 		this.props.history.push(`/questions/${id}`);
 	};
 
+	toggleTab = () => {
+		const {selectedTab} = this.state;
+
+		if (selectedTab === TABS.UNANSWERD_QUESTIONS) {
+			this.setState({
+				selectedTab: TABS.ANSWERED_QUESTIONS,
+			});
+		} else {
+			this.setState({
+				selectedTab: TABS.UNANSWERD_QUESTIONS,
+			});
+		}
+	}
+
 	render() {
 		const {loggedUser, answeredQuestions, unansweredQuestions} = this.props;
+		const {selectedTab} = this.state;
 		if (!loggedUser) {
 			return <Redirect push to='login'/>;
 		}
@@ -32,33 +55,51 @@ class Dashboard extends Component {
 				<Header/>
 				<Nav/>
 				<div className='dashboard'>
-					<Tabs>
-						<TabList>
-							<Tab>Unanswered questions</Tab>
-							<Tab>Answered questions</Tab>
-						</TabList>
+					<div className='dashboard-tab-list'>
+						{
+							selectedTab === TABS.UNANSWERD_QUESTIONS && (
+								<div className='dashboard-tab-list-tab'>
+									<button onClick={this.toggleTab}>Unanswered questions</button>
+								</div>
+							)
+						}
+						{
+							selectedTab === TABS.ANSWERED_QUESTIONS && (
+								<div className='dashboard-tab-list-tab'>
+									<button onClick={this.toggleTab}>Answered questions</button>
+								</div>
+							)
+						}
+					</div>
 
-						<TabPanel>
-							{
-								unansweredQuestions.map(({id, optionOne: {text}, author}) => (
-									<DashboardPoll id={id} poll={text} author={author}
-									               onViewPoll={this.goToQuestionDetails}
-									               buttonLabel='Answer poll' key={id}/>
-								))
-							}
-						</TabPanel>
-						<TabPanel>
-							{
-								answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
-									<DashboardPoll
-										id={id}
-										poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-										author={author} onViewPoll={this.goToQuestionDetails} buttonLabel='View poll'
-										key={id}/>
-								))
-							}
-						</TabPanel>
-					</Tabs>
+					{
+						selectedTab === TABS.UNANSWERD_QUESTIONS && (
+							<div className='dashboard-tab-panel'>
+								{
+									unansweredQuestions.map(({id, optionOne: {text}, author}) => (
+										<DashboardPoll id={id} poll={text} author={author}
+										               onViewPoll={this.goToQuestionDetails}
+										               buttonLabel='Answer poll' key={id}/>
+									))
+								}
+							</div>)
+					}
+
+					{
+						selectedTab === TABS.ANSWERED_QUESTIONS && (
+							<div className='dashboard-tab-panel'>
+								{
+									answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
+										<DashboardPoll
+											id={id}
+											poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
+											author={author} onViewPoll={this.goToQuestionDetails}
+											buttonLabel='View poll'
+											key={id}/>
+									))
+								}
+							</div>)
+					}
 				</div>
 			</div>
 		);
