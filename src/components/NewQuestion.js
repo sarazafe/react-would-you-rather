@@ -4,6 +4,7 @@ import {Redirect, withRouter} from "react-router-dom";
 import Header from "./Header";
 import {Nav} from "./Nav";
 import {handleAddNewQuestion} from "../actions/questions";
+import "./NewQuestion.css";
 
 /**
  * Component for new question page
