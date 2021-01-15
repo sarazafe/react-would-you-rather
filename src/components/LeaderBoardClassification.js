@@ -13,7 +13,7 @@ import './LeaderBoardClassification.css';
  */
 export const LeaderBoardClassification = ({name, avatarURL, answeredQuestions, createdQuestions})=> {
 	return (
-		<QuestionCard title={name} avatarURL={avatarURL}>
+		<QuestionCard name={name} avatarURL={avatarURL} title={name}>
 			<div className='leader-board-classification'>
 				<div className='leader-board-classification-summary'>
 					<div className='leader-board-classification-summary-scores'>

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import Header from "./Header";
 import {Nav} from "./Nav";
+import {LeaderBoardClassification} from "./LeaderBoardClassification";
 
 /**
  * Component for leader board pages
@@ -22,32 +23,9 @@ class LeaderBoard extends Component {
 				<div className='leader-board'>
 					{
 						classification.map(({id, name, avatarURL, answeredQuestions, createdQuestions}) => (
-							<div className='leader-board-classification' key={id}>
-								<div className='leader-board-classification-avatar'>
-									<img src={avatarURL} alt={`${name}'s avatar`}/>
-								</div>
-								<div className='leader-board-classification-summary'>
-									<div className='leader-board-classification-summary-title'>
-										{name}
-									</div>
-									<div className='leader-board-classification-summary-scores'>
-										<div className='leader-board-classification-summary-score'>
-											Answered questions {answeredQuestions}
-										</div>
-										<div className='leader-board-classification-summary-score'>
-											Created questions {createdQuestions}
-										</div>
-									</div>
-								</div>
-								<div className='leader-board-classification-total-score'>
-									<div className='leader-board-classification-total-score-title'>
-										Score
-									</div>
-									<div className='leader-board-classification-total-score-score'>
-										{answeredQuestions + createdQuestions}
-									</div>
-								</div>
-							</div>
+							<LeaderBoardClassification key={id} name={name} avatarURL={avatarURL}
+							                           answeredQuestions={answeredQuestions}
+							                           createdQuestions={createdQuestions}/>
 						))
 					}
 				</div>

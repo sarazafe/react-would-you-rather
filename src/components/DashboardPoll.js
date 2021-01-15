@@ -17,9 +17,8 @@ class DashboardPoll extends Component {
 
 	render(){
 		const {id, poll, author: {name, avatarURL}, onViewPoll, buttonLabel} = this.props;
-
 		return (
-			<QuestionCard name={name} avatarURL={avatarURL}>
+			<QuestionCard name={name} avatarURL={avatarURL} title={`${name} asks:`}>
 				<div className='dashboard-poll-body-question'>
 					<div className='dashboard-poll-body-question-title'>Would you rather?
 					</div>
