@@ -19,9 +19,10 @@ button:disabled {
     color: #22223b91;
     background-color: #f2e9e4a8;
     border: 1px solid #c9ada752;
+    cursor: initial;
 }
 
-button:hover {
+button:hover:enabled {
     background-color: #4A4E69;
     color: #F2E9E4;
     border-color: #4A4E69;
