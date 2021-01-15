@@ -29,7 +29,7 @@ class QuestionDetails extends Component {
 				<Header/>
 				<Nav/>
 				<div className='question-details'>
-					<QuestionCard name={name} avatarURL={avatarURL}>
+					<QuestionCard name={name} avatarURL={avatarURL} title={`${name} asks:`}>
 						<div className='question-details-body'>
 							<div className='question-details-body-title'>
 								Would you rather?
