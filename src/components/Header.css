@@ -36,4 +36,5 @@
 
 .header-logged-user-logout button:hover {
     color: #9A8C98;
+    background-color: inherit;
 }

@@ -42,7 +42,7 @@
 .login-body-users-selected-user img {
     height: 2em;
     width: 2em;
-    border-radius: 1em;
+    border-radius: 100%;
     border: 1px solid #9A8C98;
 }
 

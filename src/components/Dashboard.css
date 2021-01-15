@@ -33,6 +33,7 @@
 
 .dashboard-tab-list-tab button:hover {
     color: #4A4E69;
+    background-color: inherit;
 }
 
 .dashboard-tab-list-tab.active button {
