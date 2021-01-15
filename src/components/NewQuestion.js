@@ -46,7 +46,10 @@ class NewQuestion extends Component {
 	render() {
 		const {loggedUser} = this.props;
 		if (!loggedUser) {
-			return <Redirect push to='login'/>;
+			return <Redirect push to={{
+				pathname: '/login',
+				state: { referrer: '/add' }
+			}}/>;
 		}
 
 		const {optionOne, optionTwo} = this.state;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom';
 import {logoutUser} from "../actions/loggedUser";
 import './Header.css';
 
@@ -11,6 +12,7 @@ class Header extends Component {
 	 * Logs the user out of session
 	 */
 	logoutUser = ()=> {
+		this.props.history.push('/');
 		this.props.dispatch(logoutUser());
 	};
 
@@ -37,4 +39,4 @@ function mapStateToProps({loggedUser}) {
 	};
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

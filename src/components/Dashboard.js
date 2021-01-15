@@ -47,7 +47,10 @@ class Dashboard extends Component {
 		const {loggedUser, answeredQuestions, unansweredQuestions} = this.props;
 		const {selectedTab} = this.state;
 		if (!loggedUser) {
-			return <Redirect push to='login'/>;
+			return <Redirect push to={{
+				pathname: '/login',
+				state: { referrer: '/' }
+			}}/>;
 		}
 
 		return (

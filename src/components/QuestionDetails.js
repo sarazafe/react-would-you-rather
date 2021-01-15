@@ -14,9 +14,13 @@ import {QuestionCard} from "./QuestionCard";
  */
 class QuestionDetails extends Component {
 	render() {
-		const {loggedUser} = this.props;
+		const {loggedUser, history: {location: {pathname}}} = this.props;
+		const questionId = pathname.replaceAll('/questions/', '')
 		if (!loggedUser) {
-			return <Redirect push to='/login'/>;
+			return <Redirect push to={{
+				pathname: '/login',
+				state: { referrer: `/questions/${questionId}` }
+			}}/>;
 		}
 
 		if (!this.props.question) {

@@ -29,7 +29,7 @@ class Login extends Component {
 	 */
 	loginUser = () => {
 		this.props.dispatch(setLoggedUser(this.state.selectedUser.value));
-		this.props.history.goBack();
+		this.props.history.push(this.props.history.location.state.referrer);
 	}
 
 	/**
@@ -44,7 +44,9 @@ class Login extends Component {
 			return {
 				value:
 					{id, name, avatarURL},
-				label: <div className='login-body-users-selected-user'><img src={avatarURL} alt={`${name}'s avatar`}/><span>{name}</span></div>
+				label: <div className='login-body-users-selected-user'><img src={avatarURL}
+				                                                            alt={`${name}'s avatar`}/><span>{name}</span>
+				</div>
 			}
 		});
 	}

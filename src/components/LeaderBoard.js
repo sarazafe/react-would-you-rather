@@ -12,7 +12,10 @@ class LeaderBoard extends Component {
 	render() {
 		const {loggedUser} = this.props;
 		if (!loggedUser) {
-			return <Redirect push to='login'/>;
+			return <Redirect push to={{
+				pathname: '/login',
+				state: { referrer: '/leaderboard' }
+			}}/>;
 		}
 
 		const {classification} = this.props;
