@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ProgressBar} from "react-step-progress-bar";
+import './PollDetails.css';
 
 /**
  * Component for the details of a poll

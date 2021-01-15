@@ -1,0 +1,22 @@
+.poll-details-option {
+    margin-bottom: 2em;
+}
+
+.poll-details-option-text {
+    margin: 1em 0;
+    font-style: italic;
+}
+
+.poll-details-option-votes {
+    text-align: right;
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+.RSPBprogressBar {
+    height: 20px;
+}
+
+.RSPBprogressBar .RSPBprogression {
+    background-color: #4A4E69;
+}
