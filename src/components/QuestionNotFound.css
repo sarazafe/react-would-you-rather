@@ -1,0 +1,12 @@
+.not-found {
+    margin: 5vh 0;
+}
+
+.not-found-to-home a {
+    text-decoration: none;
+    color: #C9ADA7;
+}
+
+.not-found-to-home a:hover {
+    color: #22223B;
+}
