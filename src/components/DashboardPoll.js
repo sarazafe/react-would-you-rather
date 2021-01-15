@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import './DashboardPoll.css';
 
 /**
  * Component a poll shown in the dashboard
@@ -18,7 +19,7 @@ class DashboardPoll extends Component {
 		return (
 			<div className='dashboard-poll'>
 				<div className='dashboard-poll-header'>
-					{name} asks:
+					<span>{name} asks:</span>
 				</div>
 				<div className='dashboard-poll-body'>
 					<div className='dashboard-poll-body-avatar'>
