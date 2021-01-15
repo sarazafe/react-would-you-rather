@@ -6,6 +6,8 @@ import Header from "./Header";
 import {Nav} from "./Nav";
 import {PollDetails} from "./PollDetails";
 import AnswerPoll from "./AnswerPoll";
+import './QuestionDetails.css';
+import {QuestionCard} from "./QuestionCard";
 
 /**
  * Component for question details page
@@ -26,13 +28,10 @@ class QuestionDetails extends Component {
 			<div>
 				<Header/>
 				<Nav/>
-				<div className='question-details'>
-					<div className='question-details-avatar'>
-						<img src={avatarURL} alt={`${name}'s avatar`}/>
-					</div>
-					<div className='question-details-poll'>
-						<div className='poll-details-title'>
-							{name} asks <span>Would you rather?</span>
+				<QuestionCard name={name} avatarURL={avatarURL}>
+					<div className='question-details'>
+						<div className='question-details-title'>
+							Would you rather?
 						</div>
 						{
 							unanswered ? (
@@ -42,7 +41,7 @@ class QuestionDetails extends Component {
 								               totalOfVotes={totalOfVotes}/>
 						}
 					</div>
-				</div>
+				</QuestionCard>
 			</div>
 		);
 	}
@@ -97,7 +96,7 @@ const getQuestionData = (question, users, loggedUser) => {
 }
 
 const mapStateToProps = ({loggedUser, users, questions}, {match: {params: {question_id}}}) => {
-	if(!loggedUser){
+	if (!loggedUser) {
 		return {};
 	}
 
