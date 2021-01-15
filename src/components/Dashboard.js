@@ -8,7 +8,7 @@ import DashboardPoll from "./DashboardPoll";
 import './Dashboard.css';
 
 const TABS = {
-	UNANSWERD_QUESTIONS: 'UNANSWERD_QUESTIONS',
+	UNANSWERED_QUESTIONS: 'UNANSWERED_QUESTIONS',
 	ANSWERED_QUESTIONS: 'ANSWERED_QUESTIONS',
 }
 
@@ -18,7 +18,7 @@ const TABS = {
 class Dashboard extends Component {
 
 	state = {
-		selectedTab: TABS.UNANSWERD_QUESTIONS,
+		selectedTab: TABS.UNANSWERED_QUESTIONS,
 	};
 
 	/**
@@ -32,13 +32,13 @@ class Dashboard extends Component {
 	toggleTab = () => {
 		const {selectedTab} = this.state;
 
-		if (selectedTab === TABS.UNANSWERD_QUESTIONS) {
+		if (selectedTab === TABS.UNANSWERED_QUESTIONS) {
 			this.setState({
 				selectedTab: TABS.ANSWERED_QUESTIONS,
 			});
 		} else {
 			this.setState({
-				selectedTab: TABS.UNANSWERD_QUESTIONS,
+				selectedTab: TABS.UNANSWERED_QUESTIONS,
 			});
 		}
 	}
@@ -56,24 +56,16 @@ class Dashboard extends Component {
 				<Nav/>
 				<div className='dashboard'>
 					<div className='dashboard-tab-list'>
-						{
-							selectedTab === TABS.UNANSWERD_QUESTIONS && (
-								<div className='dashboard-tab-list-tab'>
-									<button onClick={this.toggleTab}>Unanswered questions</button>
-								</div>
-							)
-						}
-						{
-							selectedTab === TABS.ANSWERED_QUESTIONS && (
-								<div className='dashboard-tab-list-tab'>
-									<button onClick={this.toggleTab}>Answered questions</button>
-								</div>
-							)
-						}
+						<div className={`dashboard-tab-list-tab ${selectedTab === TABS.UNANSWERED_QUESTIONS ? 'active' : ''}`}>
+							<button onClick={this.toggleTab}>Unanswered questions</button>
+						</div>
+						<div className={`dashboard-tab-list-tab ${selectedTab === TABS.ANSWERED_QUESTIONS ? 'active' : ''}`}>
+							<button onClick={this.toggleTab}>Answered questions</button>
+						</div>
 					</div>
 
 					{
-						selectedTab === TABS.UNANSWERD_QUESTIONS && (
+						selectedTab === TABS.UNANSWERED_QUESTIONS && (
 							<div className='dashboard-tab-panel'>
 								{
 									unansweredQuestions.map(({id, optionOne: {text}, author}) => (
