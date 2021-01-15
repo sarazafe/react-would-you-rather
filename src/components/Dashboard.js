@@ -56,40 +56,46 @@ class Dashboard extends Component {
 				<Nav/>
 				<div className='dashboard'>
 					<div className='dashboard-tab-list'>
-						<div className={`dashboard-tab-list-tab ${selectedTab === TABS.UNANSWERED_QUESTIONS ? 'active' : ''}`}>
-							<button onClick={this.toggleTab}>Unanswered questions</button>
+						<div
+							className={`dashboard-tab-list-tab ${selectedTab === TABS.UNANSWERED_QUESTIONS ? 'active' : ''}`}>
+							<button onClick={this.toggleTab}
+							        disabled={selectedTab === TABS.UNANSWERED_QUESTIONS}>Unanswered questions
+							</button>
 						</div>
-						<div className={`dashboard-tab-list-tab ${selectedTab === TABS.ANSWERED_QUESTIONS ? 'active' : ''}`}>
-							<button onClick={this.toggleTab}>Answered questions</button>
+						<div
+							className={`dashboard-tab-list-tab ${selectedTab === TABS.ANSWERED_QUESTIONS ? 'active' : ''}`}>
+							<button onClick={this.toggleTab} disabled={selectedTab === TABS.ANSWERED_QUESTIONS}>Answered
+								questions
+							</button>
 						</div>
 					</div>
 
 					{
 						selectedTab === TABS.UNANSWERED_QUESTIONS && (
 							<div className='dashboard-tab-panel'>
-								{
-									unansweredQuestions.map(({id, optionOne: {text}, author}) => (
-										<DashboardPoll id={id} poll={text} author={author}
-										               onViewPoll={this.goToQuestionDetails}
-										               buttonLabel='Answer poll' key={id}/>
-									))
-								}
+									{
+										unansweredQuestions.map(({id, optionOne: {text}, author}) => (
+											<DashboardPoll id={id} poll={text} author={author}
+											               onViewPoll={this.goToQuestionDetails}
+											               buttonLabel='Answer poll' key={id}/>
+										))
+									}
 							</div>)
 					}
 
 					{
 						selectedTab === TABS.ANSWERED_QUESTIONS && (
 							<div className='dashboard-tab-panel'>
-								{
-									answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
-										<DashboardPoll
-											id={id}
-											poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-											author={author} onViewPoll={this.goToQuestionDetails}
-											buttonLabel='View poll'
-											key={id}/>
-									))
-								}
+									{
+										answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
+											<DashboardPoll
+												id={id}
+												poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
+												author={author} onViewPoll={this.goToQuestionDetails}
+												buttonLabel='View poll'
+												key={id}/>
+										))
+									}
 							</div>)
 					}
 				</div>

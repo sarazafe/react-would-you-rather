@@ -47,3 +47,8 @@
 .dashboard-tab-list-tab.active, .dashboard-tab-list-tab.active button {
     background-color: #c9ada729;
 }
+
+.dashboard-tab-panel {
+    border-left: 1px solid #C9ADA7;
+    padding-top: 1em;
+}
