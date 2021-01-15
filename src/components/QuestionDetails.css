@@ -1,9 +1,25 @@
-.question-details {
+.question-details{
+    margin: auto 20vw;
+}
+
+.question-details-body {
     flex: 2;
     padding-right: 2em;
 }
 
-.question-details-title {
+.question-details-body-title {
     color: #4A4E69;
     margin: 1em 0;
+}
+
+@media (max-width: 1200px) {
+    .question-details{
+        margin: auto 10vw;
+    }
+}
+
+@media (max-width: 384px) {
+    .question-details{
+        margin: auto 0;
+    }
 }

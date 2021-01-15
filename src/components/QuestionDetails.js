@@ -28,20 +28,22 @@ class QuestionDetails extends Component {
 			<div>
 				<Header/>
 				<Nav/>
-				<QuestionCard name={name} avatarURL={avatarURL}>
-					<div className='question-details'>
-						<div className='question-details-title'>
-							Would you rather?
+				<div className='question-details'>
+					<QuestionCard name={name} avatarURL={avatarURL}>
+						<div className='question-details-body'>
+							<div className='question-details-body-title'>
+								Would you rather?
+							</div>
+							{
+								unanswered ? (
+										<AnswerPoll qid={id} optionOne={optionOne.text} optionTwo={optionTwo.text}/>
+									)
+									: <PollDetails optionOne={optionOne} optionTwo={optionTwo}
+									               totalOfVotes={totalOfVotes}/>
+							}
 						</div>
-						{
-							unanswered ? (
-									<AnswerPoll qid={id} optionOne={optionOne.text} optionTwo={optionTwo.text}/>
-								)
-								: <PollDetails optionOne={optionOne} optionTwo={optionTwo}
-								               totalOfVotes={totalOfVotes}/>
-						}
-					</div>
-				</QuestionCard>
+					</QuestionCard>
+				</div>
 			</div>
 		);
 	}
