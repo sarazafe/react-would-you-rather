@@ -41,6 +41,7 @@ class AnswerPoll extends Component {
 
 	render() {
 		const {optionOne, optionTwo} = this.props;
+		const {answer} = this.state;
 		return (
 			<form className='answer-poll-form' onSubmit={this.answerPoll}>
 				<div>
@@ -55,7 +56,7 @@ class AnswerPoll extends Component {
 					<label htmlFor="optionTwo">{optionTwo}</label>
 				</div>
 
-				<button type='submit'>Answer poll</button>
+				<button type='submit' disabled={!answer}>Answer poll</button>
 			</form>
 		);
 	}
