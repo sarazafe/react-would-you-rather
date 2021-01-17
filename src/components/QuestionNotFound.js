@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './QuestionNotFound.css';
 
-export const QuestionNotFound = ()=>{
+export const QuestionNotFound = () => {
 	return (
 		<div className='not-found'>
 			Sorry, the question that you're trying to access does not exist.

@@ -2,8 +2,8 @@ import {ADD_ANSWERED_QUESTION_TO_USER, ADD_CREATED_QUESTION_TO_USER, GET_USERS} 
 
 /**
  * Reducer for users
- * @param state the state
- * @param action the action
+ * @param state - the state
+ * @param action - the action
  */
 export const users = (state = {}, action) => {
 	switch (action.type) {
@@ -14,7 +14,7 @@ export const users = (state = {}, action) => {
 			};
 		case ADD_CREATED_QUESTION_TO_USER:
 			const {questions} = state[action.author];
-			return  {
+			return {
 				...state,
 				[action.author]: {
 					...state[action.author],
@@ -23,7 +23,7 @@ export const users = (state = {}, action) => {
 			};
 		case ADD_ANSWERED_QUESTION_TO_USER:
 			const {answers} = state[action.user];
-			return  {
+			return {
 				...state,
 				[action.user]: {
 					...state[action.user],
@@ -34,6 +34,6 @@ export const users = (state = {}, action) => {
 				}
 			};
 		default :
-			return state
+			return state;
 	}
 };

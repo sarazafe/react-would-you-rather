@@ -1,9 +1,9 @@
-import {ADD_QUESTION, ANSWER_QUESTION, GET_QUESTIONS} from "../actions/questions";
+import {ADD_QUESTION, ANSWER_QUESTION, GET_QUESTIONS} from '../actions/questions';
 
 /**
  * Reducer for questions
- * @param state the state
- * @param action the action
+ * @param state - the state
+ * @param action - the action
  */
 export const questions = (state = {}, action) => {
 	switch (action.type) {

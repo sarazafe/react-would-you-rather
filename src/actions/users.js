@@ -25,7 +25,7 @@ export const addCreatedQuestionToUser = ({author, id}) => {
 		author,
 		qid: id,
 	};
-}
+};
 
 /**
  * Action for adding an answered question to a user
@@ -34,11 +34,11 @@ export const addCreatedQuestionToUser = ({author, id}) => {
  * @param answer - the answer
  * @returns {{author: *, type: *, qid: *}}
  */
-export const addAnsweredQuestionToUser = ({user, qid, answer})=> {
+export const addAnsweredQuestionToUser = ({user, qid, answer}) => {
 	return {
 		type: ADD_ANSWERED_QUESTION_TO_USER,
 		user,
 		qid,
 		answer,
 	};
-}
+};

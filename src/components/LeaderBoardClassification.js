@@ -1,5 +1,5 @@
 import React from 'react';
-import {QuestionCard} from "./QuestionCard";
+import {QuestionCard} from './QuestionCard';
 import './LeaderBoardClassification.css';
 
 /**
@@ -11,7 +11,7 @@ import './LeaderBoardClassification.css';
  * @returns {JSX.Element}
  * @constructor
  */
-export const LeaderBoardClassification = ({name, avatarURL, answeredQuestions, createdQuestions})=> {
+export const LeaderBoardClassification = ({name, avatarURL, answeredQuestions, createdQuestions}) => {
 	return (
 		<QuestionCard name={name} avatarURL={avatarURL} title={name}>
 			<div className='leader-board-classification'>
@@ -28,12 +28,12 @@ export const LeaderBoardClassification = ({name, avatarURL, answeredQuestions, c
 					</div>
 				</div>
 				<div className='leader-board-classification-total-score'>
-						<div className='leader-board-classification-total-score-title'>
-							Score
-						</div>
-						<div className='leader-board-classification-total-score-score'>
-							{answeredQuestions + createdQuestions}
-						</div>
+					<div className='leader-board-classification-total-score-title'>
+						Score
+					</div>
+					<div className='leader-board-classification-total-score-score'>
+						{answeredQuestions + createdQuestions}
+					</div>
 				</div>
 			</div>
 		</QuestionCard>

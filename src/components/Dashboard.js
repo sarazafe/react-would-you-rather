@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import Header from "./Header";
-import {Nav} from "./Nav";
+import Header from './Header';
+import {Nav} from './Nav';
 import {withRouter} from 'react-router-dom';
-import DashboardPoll from "./DashboardPoll";
+import DashboardPoll from './DashboardPoll';
 import './Dashboard.css';
 
 const TABS = {
@@ -49,7 +49,7 @@ class Dashboard extends Component {
 		if (!loggedUser) {
 			return <Redirect push to={{
 				pathname: '/login',
-				state: { referrer: '/' }
+				state: {referrer: '/'}
 			}}/>;
 		}
 
@@ -76,29 +76,29 @@ class Dashboard extends Component {
 					{
 						selectedTab === TABS.UNANSWERED_QUESTIONS && (
 							<div className='dashboard-tab-panel'>
-									{
-										unansweredQuestions.map(({id, optionOne: {text}, author}) => (
-											<DashboardPoll id={id} poll={text} author={author}
-											               onViewPoll={this.goToQuestionDetails}
-											               buttonLabel='Answer poll' key={id}/>
-										))
-									}
+								{
+									unansweredQuestions.map(({id, optionOne: {text}, author}) => (
+										<DashboardPoll id={id} poll={text} author={author}
+										               onViewPoll={this.goToQuestionDetails}
+										               buttonLabel='Answer poll' key={id}/>
+									))
+								}
 							</div>)
 					}
 
 					{
 						selectedTab === TABS.ANSWERED_QUESTIONS && (
 							<div className='dashboard-tab-panel'>
-									{
-										answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
-											<DashboardPoll
-												id={id}
-												poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
-												author={author} onViewPoll={this.goToQuestionDetails}
-												buttonLabel='View poll'
-												key={id}/>
-										))
-									}
+								{
+									answeredQuestions.map(({id, optionOne, optionTwo, author}) => (
+										<DashboardPoll
+											id={id}
+											poll={optionOne.votes.find(v => v === loggedUser.id) ? optionOne.text : optionTwo.text}
+											author={author} onViewPoll={this.goToQuestionDetails}
+											buttonLabel='View poll'
+											key={id}/>
+									))
+								}
 							</div>)
 					}
 				</div>

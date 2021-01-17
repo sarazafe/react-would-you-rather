@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
-import "react-step-progress-bar/styles.css";
-import Header from "./Header";
-import {Nav} from "./Nav";
-import {PollDetails} from "./PollDetails";
-import AnswerPoll from "./AnswerPoll";
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import 'react-step-progress-bar/styles.css';
+import Header from './Header';
+import {Nav} from './Nav';
+import {PollDetails} from './PollDetails';
+import AnswerPoll from './AnswerPoll';
 import './QuestionDetails.css';
-import {QuestionCard} from "./QuestionCard";
+import {QuestionCard} from './QuestionCard';
 
 /**
  * Component for question details page
@@ -19,7 +19,7 @@ class QuestionDetails extends Component {
 		if (!loggedUser) {
 			return <Redirect push to={{
 				pathname: '/login',
-				state: { referrer: `/questions/${questionId}` }
+				state: {referrer: `/questions/${questionId}`}
 			}}/>;
 		}
 

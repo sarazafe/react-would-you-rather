@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {Redirect, withRouter} from "react-router-dom";
-import Header from "./Header";
-import {Nav} from "./Nav";
-import {handleAddNewQuestion} from "../actions/questions";
-import "./NewQuestion.css";
+import {connect} from 'react-redux';
+import {Redirect, withRouter} from 'react-router-dom';
+import Header from './Header';
+import {Nav} from './Nav';
+import {handleAddNewQuestion} from '../actions/questions';
+import './NewQuestion.css';
 
 /**
  * Component for new question page
@@ -48,7 +48,7 @@ class NewQuestion extends Component {
 		if (!loggedUser) {
 			return <Redirect push to={{
 				pathname: '/login',
-				state: { referrer: '/add' }
+				state: {referrer: '/add'}
 			}}/>;
 		}
 

@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './DashboardPoll.css';
-import {QuestionCard} from "./QuestionCard";
+import {QuestionCard} from './QuestionCard';
 
 /**
  * Component a poll shown in the dashboard
@@ -15,7 +15,7 @@ class DashboardPoll extends Component {
 		buttonLabel: PropTypes.string.isRequired,
 	};
 
-	render(){
+	render() {
 		const {id, poll, author: {name, avatarURL}, onViewPoll, buttonLabel} = this.props;
 		return (
 			<QuestionCard name={name} avatarURL={avatarURL} title={`${name} asks:`}>

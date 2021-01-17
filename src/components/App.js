@@ -1,14 +1,14 @@
-import React, {Component, Fragment} from "react";
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LoadingBar from 'react-redux-loading';
-import Dashboard from "./Dashboard";
-import QuestionDetails from "./QuestionDetails";
-import NewQuestion from "./NewQuestion";
-import LeaderBoard from "./LeaderBoard";
-import Login from "./Login";
-import {handleInitialData} from "../common/common";
-import {QuestionNotFound} from "./QuestionNotFound";
+import Dashboard from './Dashboard';
+import QuestionDetails from './QuestionDetails';
+import NewQuestion from './NewQuestion';
+import LeaderBoard from './LeaderBoard';
+import Login from './Login';
+import {handleInitialData} from '../common/common';
+import {QuestionNotFound} from './QuestionNotFound';
 import './App.css';
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
-					<LoadingBar style={{ backgroundColor: '#C9ADA7', height: '5px' }} />
+					<LoadingBar style={{backgroundColor: '#C9ADA7', height: '5px'}}/>
 					<div className='app'>
 						<div>
 							<Route path='/' exact component={Dashboard}/>

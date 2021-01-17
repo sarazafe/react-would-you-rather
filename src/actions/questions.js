@@ -1,6 +1,6 @@
-import {saveQuestion, answerPoll} from "../common/api";
+import {saveQuestion, answerPoll} from '../common/api';
 import {showLoading, hideLoading} from 'react-redux-loading';
-import {addAnsweredQuestionToUser, addCreatedQuestionToUser} from "./users";
+import {addAnsweredQuestionToUser, addCreatedQuestionToUser} from './users';
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
@@ -51,10 +51,10 @@ export const answerQuestion = ({user, qid, answer}) => {
  * @returns {function(*, *): Promise<unknown>}
  */
 export const handleAddNewQuestion = question => {
-	return (dispatch) => {
+	return dispatch => {
 		dispatch(showLoading())
 		return saveQuestion(question)
-			.then((question) => {
+			.then(question => {
 				dispatch(addQuestion(question))
 				dispatch(addCreatedQuestionToUser(question))
 			})
@@ -70,7 +70,7 @@ export const handleAddNewQuestion = question => {
  * @returns {function(*): Promise<unknown>}
  */
 export const handleAnswerQuestion = ({loggedUser, qid, answer}) => {
-	return (dispatch) => {
+	return dispatch => {
 		dispatch(showLoading())
 		return answerPoll({loggedUser, qid, answer})
 			.then(() => {

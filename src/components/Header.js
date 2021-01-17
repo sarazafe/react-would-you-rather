@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {logoutUser} from "../actions/loggedUser";
+import {logoutUser} from '../actions/loggedUser';
 import './Header.css';
 
 /**
@@ -11,7 +11,7 @@ class Header extends Component {
 	/**
 	 * Logs the user out of session
 	 */
-	logoutUser = ()=> {
+	logoutUser = () => {
 		this.props.history.push('/');
 		this.props.dispatch(logoutUser());
 	};

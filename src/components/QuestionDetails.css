@@ -1,4 +1,4 @@
-.question-details{
+.question-details {
     margin: auto 20vw;
 }
 
@@ -13,13 +13,13 @@
 }
 
 @media (max-width: 1200px) {
-    .question-details{
+    .question-details {
         margin: auto 10vw;
     }
 }
 
 @media (max-width: 384px) {
-    .question-details{
+    .question-details {
         margin: auto 0;
     }
 }

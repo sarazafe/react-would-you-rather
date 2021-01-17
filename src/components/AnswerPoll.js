@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
-import {handleAnswerQuestion} from "../actions/questions";
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {handleAnswerQuestion} from '../actions/questions';
 import './AnswerPoll.css';
 
 /**
@@ -46,15 +46,15 @@ class AnswerPoll extends Component {
 		return (
 			<form className='answer-poll-form' onSubmit={this.answerPoll}>
 				<div>
-					<input type="radio" id="optionOne" name="options" value="optionOne"
+					<input type='radio' id='optionOne' name='options' value='optionOne'
 					       onChange={this.updateSelectedAnswer}/>
-					<label htmlFor="optionOne">{optionOne}</label>
+					<label htmlFor='optionOne'>{optionOne}</label>
 				</div>
 				<div className='answer-poll-form-separator'>or</div>
 				<div>
-					<input type="radio" id="optionTwo" name="options" value="optionTwo"
+					<input type='radio' id='optionTwo' name='options' value='optionTwo'
 					       onChange={this.updateSelectedAnswer}/>
-					<label htmlFor="optionTwo">{optionTwo}</label>
+					<label htmlFor='optionTwo'>{optionTwo}</label>
 				</div>
 
 				<button type='submit' disabled={!answer}>Answer poll</button>

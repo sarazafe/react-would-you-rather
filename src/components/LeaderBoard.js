@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
-import Header from "./Header";
-import {Nav} from "./Nav";
-import {LeaderBoardClassification} from "./LeaderBoardClassification";
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import Header from './Header';
+import {Nav} from './Nav';
+import {LeaderBoardClassification} from './LeaderBoardClassification';
 
 /**
  * Component for leader board pages
@@ -14,7 +14,7 @@ class LeaderBoard extends Component {
 		if (!loggedUser) {
 			return <Redirect push to={{
 				pathname: '/login',
-				state: { referrer: '/leaderboard' }
+				state: {referrer: '/leaderboard'}
 			}}/>;
 		}
 
